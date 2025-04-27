@@ -16,7 +16,6 @@
         "payment": false,
         "status": true,
         "bank": "Monobank Ukraine",
-        "authorizedUser": "Vera",
         "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ikea_logo.svg/200px-Ikea_logo.svg.png?20220903005024"
       },
       {

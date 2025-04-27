@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Transaction, UserResponse } from "./interface";
 
 export default function App() {
-  const [transactions, setTransactions] = useState<any | null>(null);
-  const [userData, setUserData] = useState<any | null>(null);
+  const [transactions, setTransactions] = useState<Array<Transaction>>([]);
+  const [userData, setUserData] = useState<UserResponse | null>(null);
 
   useEffect(() => {
     fetch("http://localhost:3001/api/transactions")
@@ -29,13 +30,13 @@ export default function App() {
           <div className="flex flex-col gap-4 flex-1">
             <div className="bg-white p-4 rounded-2xl">
               <p className="text-sm text-gray-600">Card Balance</p>
-              <h2 className="text-2xl font-bold mt-2">${userData.money}</h2>
+              <h2 className="text-2xl font-bold mt-2">${userData!.money}</h2>
               <p className="text-xs text-gray-400 mt-1">$1,482.70 Available</p>
             </div>
 
             <div className="bg-white p-4 rounded-2xl">
               <p className="text-sm">Daily Points</p>
-              <h2 className="text-xs mt-1 text-gray-400">{userData.points}</h2>
+              <h2 className="text-xs mt-1 text-gray-400">{userData!.points}</h2>
             </div>
           </div>
 
@@ -63,7 +64,7 @@ export default function App() {
                     <div>
                       <p className="font-semibold">{tx.name}</p>
                       <p className="text-xs text-gray-400">{tx.pending ? 'Pending ' : ' '} {tx.description}</p>
-                      <p className="text-xs text-gray-400">{userData.user == tx.user ? '' : "From: " + tx.user}</p>
+                      <p className="text-xs text-gray-400">{userData!.user == tx.user ? '' : "From: " + tx.user}</p>
                       <p className="text-xs text-gray-400">{tx.date}</p>
                     </div>
                   </div>

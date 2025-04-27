@@ -1,7 +1,9 @@
+import { Transaction } from "../interface";
+
 async function getTransaction(id: string) {
     const res = await fetch(`http://localhost:3001/api/transactions`, { cache: 'no-store' });
     const data = await res.json();
-    const found = data.find((tx: any) => tx.id === Number(id));
+    const found = data.find((tx: Transaction) => tx.id === Number(id));
     console.log(data)
     return found;
 }
