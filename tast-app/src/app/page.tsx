@@ -5,21 +5,21 @@ import { useEffect, useState } from "react";
 import { Transaction, UserResponse } from "./interface";
 
 export default function App() {
-  const [transactions, settransactions] = useState<Transaction[] | null>(null);
+  const [transactions, setTransactions] = useState<Transaction[] | null>(null);
   const [userData, setUserData] = useState<UserResponse | null>(null);
 
   useEffect(() => {
     fetch("http://localhost:3001/api/transactions!")
       .then(res => res.json())
       .then((data) => {
-        settransactions(data)
-        console.log(data)
-      })
+        setTransactions(data);
+        console.log(data);
+      });
     fetch('http://localhost:3001/api/user')
       .then(res => res.json())
       .then((data) => {
-        setUserData(data)
-        console.log(data)
+        setUserData(data);
+        console.log(data);
       });
   }, []);
 
@@ -52,7 +52,7 @@ export default function App() {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold m-1">Latest transactions!</h3>
           <div className="space-y-3 rounded-2xl bg-white">
-            {transactions?.map((tx?: any) => (
+            {transactions?.map((tx) => (
               <Link
                 key={tx?.id}
                 href={`/${tx?.id}`}
