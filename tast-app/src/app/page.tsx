@@ -52,25 +52,25 @@ export default function App() {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold m-1">Latest transactions!</h3>
           <div className="space-y-3 rounded-2xl bg-white">
-            {transactions?.map((tx: any) => (
+            {transactions?.map((tx?: any) => (
               <Link
-                key={tx.id}
-                href={`/${tx.id}`}
+                key={tx?.id}
+                href={`/${tx?.id}`}
                 className="flex flex-col items-center justify-between p-3 cursor-pointer m-0"
               >
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center gap-4">
-                    <img src={tx.logo} alt={tx.name} className="w-10 h-10 object-contain" />
+                    <img src={tx?.logo} alt={tx?.name} className="w-10 h-10 object-contain" />
                     <div>
-                      <p className="font-semibold">{tx.name}</p>
-                      <p className="text-xs text-gray-400">{tx.pending ? 'Pending ' : ' '} {tx.description}</p>
-                      <p className="text-xs text-gray-400">{userData?.user == tx.user ? '' : "From: " + tx.user}</p>
-                      <p className="text-xs text-gray-400">{tx.date}</p>
+                      <p className="font-semibold">{tx?.name}</p>
+                      <p className="text-xs text-gray-400">{tx?.pending ? 'Pending ' : ' '} {tx?.description}</p>
+                      <p className="text-xs text-gray-400">{userData?.user == tx?.user ? '' : "From: " + tx?.user}</p>
+                      <p className="text-xs text-gray-400">{tx?.date}</p>
                     </div>
                   </div>
 
-                  <div className={`font-semibold ${tx.type == 'Payment' ? "text-green-500" : "text-red-500"}`}>
-                    {tx.type == 'Payment' ? `$${tx.amount}` : `-$${tx.amount}`}
+                  <div className={`font-semibold ${tx?.type == 'Payment' ? "text-green-500" : "text-red-500"}`}>
+                    {tx?.type == 'Payment' ? `$${tx?.amount}` : `-$${tx?.amount}`}
                   </div>
                 </div>
                 <hr className="h-px mt-5 w-full bg-gray-200 border-0 dark:bg-gray-700"/>
