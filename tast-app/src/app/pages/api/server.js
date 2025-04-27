@@ -1,6 +1,6 @@
 import express from 'express';
-const cors = require('cors');
-const db = require('./db.json'); 
+import cors from 'cors';
+import db from './db.json';
 
 const app = express();
 const PORT = 3001;
