@@ -8,7 +8,13 @@ async function getTransaction(id: string) {
     return found;
 }
 
-export default async function TransactionDetail({ params }: { params: { id: string } }) {
+interface PageProps {
+    params: {
+      id: string;
+    };
+  }
+  
+  export default async function TransactionDetail({ params }: PageProps) {
     const transaction = await getTransaction(params.id);
 
     if (!transaction) {
