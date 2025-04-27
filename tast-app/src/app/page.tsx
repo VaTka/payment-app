@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function App() {
-  const [transactions, setTransactions] = useState([]);
-  const [userData, setUserData] = useState([]);
+  const [transactions, setTransactions] = useState<any>([]);
+  const [userData, setUserData] = useState<any>([]);
 
   useEffect(() => {
     fetch("http://localhost:3001/api/transactions")
