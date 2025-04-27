@@ -6,14 +6,9 @@ async function getTransaction(id: string): Promise<Transaction | undefined> {
     return data.find((tx: Transaction) => tx.id === Number(id));
 }
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function TransactionDetail({ params }: PageProps) {
-    const transaction = await getTransaction(params.id);
+export default async function TransactionDetail({ params }: {params: Promise<{ id: string }>}) {
+    const resolvedParams = await params;
+    const transaction = await getTransaction(resolvedParams.id);
 
     if (!transaction) {
         return <div>Loading...</div>;
