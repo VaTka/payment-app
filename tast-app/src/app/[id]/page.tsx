@@ -1,20 +1,18 @@
 import { Transaction } from "../interface";
 
-async function getTransaction(id: string) {
+async function getTransaction(id: string): Promise<Transaction | undefined> {
     const res = await fetch(`http://localhost:3001/api/transactions`, { cache: 'no-store' });
     const data = await res.json();
-    const found = data.find((tx: Transaction) => tx.id === Number(id));
-    console.log(data)
-    return found;
+    return data.find((tx: Transaction) => tx.id === Number(id));
 }
 
 interface PageProps {
-    params: {
-      id: string;
-    };
-  }
-  
-  export default async function TransactionDetail({ params }: PageProps) {
+  params: {
+    id: string;
+  };
+}
+
+export default async function TransactionDetail({ params }: PageProps) {
     const transaction = await getTransaction(params.id);
 
     if (!transaction) {
@@ -29,10 +27,10 @@ interface PageProps {
                     <p className="text-xs font-light text-gray-400 m-0">{transaction.name}</p>
                     <p className="text-xs font-light text-gray-400 m-0">{transaction.date}</p>
                 </div>
-                
+
                 <div className="bg-white rounded-2xl p-4 flex flex-col align-middle">
                     <div>
-                        <p className="font-bold">Status: {!transaction.pending ? "Approved" : "Panding"}</p>
+                        <p className="font-bold">Status: {!transaction.pending ? "Approved" : "Pending"}</p>
                         <p className="text-xs text-gray-400">{transaction.bank}</p>
                     </div>
                     <hr className="h-px m-5 bg-gray-200 border-0 dark:bg-gray-700"/>
