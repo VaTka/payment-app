@@ -1,7 +1,8 @@
 import { Transaction } from "../interface";
 
 async function getTransaction(id: string): Promise<Transaction | undefined> {
-    const res = await fetch(`http://localhost:3001/api/transactions`, { cache: 'no-store' });
+    const LINK = 'https://payment-app-backend-svci.onrender.com'
+    const res = await fetch(`${LINK}/api/transactions`, { cache: 'no-store' });
     const data = await res.json();
     return data.find((tx: Transaction) => tx.id === Number(id));
 }

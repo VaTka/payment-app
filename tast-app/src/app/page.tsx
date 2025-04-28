@@ -7,15 +7,16 @@ import { Transaction, UserResponse } from "./interface";
 export default function App() {
   const [transactions, setTransactions] = useState<Transaction[] | null>(null);
   const [userData, setUserData] = useState<UserResponse | null>(null);
+  const LINK = 'https://payment-app-backend-svci.onrender.com'
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/transactions!")
+    fetch(`${LINK}/api/transactions`)
       .then(res => res.json())
       .then((data) => {
         setTransactions(data);
         console.log(data);
       });
-    fetch('http://localhost:3001/api/user')
+    fetch(`${LINK}/api/user`)
       .then(res => res.json())
       .then((data) => {
         setUserData(data);
@@ -73,7 +74,7 @@ export default function App() {
                     {tx?.type == 'Payment' ? `$${tx?.amount}` : `-$${tx?.amount}`}
                   </div>
                 </div>
-                <hr className="h-px mt-5 w-full bg-gray-200 border-0 dark:bg-gray-700"/>
+                <hr className="h-px mt-5 w-full bg-gray-200 border-0 dark:bg-gray-700" />
               </Link>
             ))}
           </div>
